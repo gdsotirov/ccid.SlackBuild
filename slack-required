@@ -1,0 +1,3 @@
+glibc-solibs >= 2.5
+libusb >= 0.1.12
+pcsc-lite >= 1.4.4
