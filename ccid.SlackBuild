@@ -2,12 +2,13 @@
 #
 # SlackBuild for CCID free software driver
 # Written by Georgi D. Sotirov <gdsotirov@dir.bg>
+# Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
 
 . ../slack-package.conf
 
 NAME=ccid
-VERSION=1.3.13
+VERSION=1.4.0
 BUILD=1
 ARCH=${ARCH:-i486}
 
