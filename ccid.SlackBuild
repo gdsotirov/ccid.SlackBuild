@@ -19,7 +19,7 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: ccid.SlackBuild,v 1.6 2012/06/23 17:53:42 gsotirov Exp $
+# $Id: ccid.SlackBuild,v 1.7 2012/06/23 17:58:35 gsotirov Exp $
 #
 
 . ../../slack-package.conf
@@ -74,7 +74,7 @@ make -j4 || exit 5
 make DESTDIR=$PKG install
 
 # Additional install steps
-install -m 755 -d $PKG/lib${LIBDIRSUFFIX}/udev/rules.d
+install -m 755 -d $PKG/lib/udev/rules.d
 install -m 644 $SRC/src/92_pcscd_ccid.rules $PKG/lib/udev/rules.d/92_pcscd_ccid.rules
 
 # Prepare
