@@ -1,15 +1,32 @@
 #!/bin/sh
 #
-# SlackBuild for CCID free software driver
-# Written by Georgi D. Sotirov <gdsotirov@dir.bg>
+# Slackware build script for CCID free software driver
+# Copyright (C) 2008-2010,2012 Georgi D. Sotirov <gdsotirov@dir.bg>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
+# $Id: ccid.SlackBuild,v 1.6 2012/06/23 17:53:42 gsotirov Exp $
+#
 
-. ../slack-package.conf
+. ../../slack-package.conf
 
 NAME=ccid
-VERSION=1.4.0
-BUILD=1
+VERSION=1.4.7
+BUILD=${BUILD:-1}
 ARCH=${ARCH:-i486}
 
 TMP=${TMP:-/tmp}
@@ -34,7 +51,7 @@ mkdir -p $PKG
 
 # Extract the sources
 cd $TMP
-tar -jxvf $CWD/$NAME-$VERSION.tar.bz2
+tar -jxvf $CWD/$NAME-$VERSION.tar.bz2 || exit 3
 cd $SRC
 fix_source
 
@@ -47,18 +64,18 @@ CXXFLAGS=$SLKCFLAGS \
             --sysconfdir=/etc \
             --localstatedir=/var \
             --mandir=/usr/man \
+            --libdir=/usr/lib${LIBDIRSUFFIX} \
             --docdir=/usr/doc/$NAME-$VERSION \
             --enable-shared=yes \
-            --enable-static=no \
-            --enable-udev || exit 1
+            --enable-static=no || exit 4
 
 # Build & install
-make -j4 || exit 2
+make -j4 || exit 5
 make DESTDIR=$PKG install
 
 # Additional install steps
-install -m 755 -d $PKG/lib/udev/rules.d
-install -m 644 $SRC/src/pcscd_ccid.rules $PKG/lib/udev/rules.d/12-pcscd_ccid.rules
+install -m 755 -d $PKG/lib${LIBDIRSUFFIX}/udev/rules.d
+install -m 644 $SRC/src/92_pcscd_ccid.rules $PKG/lib/udev/rules.d/92_pcscd_ccid.rules
 
 # Prepare
 bin_perms $PKG
