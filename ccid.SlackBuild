@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Slackware build script for CCID free software driver
-# Copyright (C) 2008-2010,2012 Georgi D. Sotirov <gdsotirov@dir.bg>
+# Copyright (C) 2008-2013 Georgi D. Sotirov <gdsotirov@dir.bg>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,15 +19,15 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: ccid.SlackBuild,v 1.7 2012/06/23 17:58:35 gsotirov Exp $
+# $Id: ccid.SlackBuild,v 1.8 2017/01/28 18:54:53 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=ccid
-VERSION=1.4.7
-BUILD=${BUILD:-1}
+VERSION=1.4.12
 ARCH=${ARCH:-i486}
+BUILD=${BUILD:-1}
 
 TMP=${TMP:-/tmp}
 CWD=${CWD:-`pwd`}
@@ -51,7 +51,7 @@ mkdir -p $PKG
 
 # Extract the sources
 cd $TMP
-tar -jxvf $CWD/$NAME-$VERSION.tar.bz2 || exit 3
+tar -xvf $CWD/$NAME-$VERSION.tar.?z* || exit 3
 cd $SRC
 fix_source
 
@@ -71,7 +71,7 @@ CXXFLAGS=$SLKCFLAGS \
 
 # Build & install
 make -j4 || exit 5
-make DESTDIR=$PKG install
+make DESTDIR=$PKG install || exit 6
 
 # Additional install steps
 install -m 755 -d $PKG/lib/udev/rules.d
