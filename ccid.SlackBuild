@@ -19,13 +19,13 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: ccid.SlackBuild,v 1.10 2017/01/28 19:15:45 gsotirov Exp $
+# $Id: ccid.SlackBuild,v 1.11 2017/11/19 06:57:54 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=ccid
-VERSION=1.4.26
+VERSION=1.4.28
 ARCH=${ARCH:-i586}
 BUILD=${BUILD:-1}
 
