@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Slackware build script for CCID free software driver
-# Copyright (C) 2008-2017 Georgi D. Sotirov <gdsotirov@dir.bg>
+# Copyright (C) 2008-2020 Georgi D. Sotirov <gdsotirov@dir.bg>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,13 +19,11 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: ccid.SlackBuild,v 1.11 2017/11/19 06:57:54 gsotirov Exp $
-#
 
 . ../../slack-package.conf
 
 NAME=ccid
-VERSION=1.4.28
+VERSION=1.4.33
 ARCH=${ARCH:-i586}
 BUILD=${BUILD:-1}
 
@@ -75,7 +73,7 @@ make V=1 DESTDIR=$PKG install || exit 6
 
 # Additional install steps
 install -m 755 -d $PKG/lib/udev/rules.d
-install -m 644 $SRC/src/92_pcscd_ccid.rules $PKG/lib/udev/rules.d/92_pcscd_ccid.rules
+install -m 644 -p $SRC/src/92_pcscd_ccid.rules $PKG/lib/udev/rules.d/92_pcscd_ccid.rules
 
 # Prepare
 bin_perms $PKG
@@ -86,14 +84,14 @@ DOCFILES="$DOCFILES SCARDGETATTRIB.txt"
 create_docs $PKG ${NAME}-${VERSION}
 
 mkdir -p $PKG/install
-install -m 644 $CWD/slack-desc     $PKG/install/slack-desc
-install -m 644 $CWD/slack-required $PKG/install/slack-required
+install -m 644 -p $CWD/slack-desc     $PKG/install/slack-desc
+install -m 644 -p $CWD/slack-required $PKG/install/slack-required
 
 SBDIR=$PKG/usr/src/slackbuilds/${NAME}-${VERSION}
 mkdir -p $SBDIR
-install -m 644 $CWD/slack-desc         $SBDIR/slack-desc
-install -m 644 $CWD/slack-required     $SBDIR/slack-required
-install -m 644 $CWD/${NAME}.SlackBuild $SBDIR/${NAME}.SlackBuild
+install -m 644 -p $CWD/slack-desc         $SBDIR/slack-desc
+install -m 644 -p $CWD/slack-required     $SBDIR/slack-required
+install -m 644 -p $CWD/${NAME}.SlackBuild $SBDIR/${NAME}.SlackBuild
 
 cd $PKG
 PKGNAME=${NAME}-${VERSION}-${ARCH}-${BUILD}${MYIN}
