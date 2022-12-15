@@ -23,7 +23,7 @@
 . ../../slack-package.conf
 
 NAME=ccid
-VERSION=1.4.36
+VERSION=1.5.1
 ARCH=${ARCH:-i586}
 BUILD=${BUILD:-1}
 
